@@ -5,6 +5,7 @@ ruby "3.2.2"
 
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem "devise", "~> 4.9"
 gem "jbuilder"
 gem "importmap-rails"
 gem "jsbundling-rails"

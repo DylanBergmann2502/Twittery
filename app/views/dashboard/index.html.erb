@@ -2,15 +2,17 @@
   <div class="mb-3">
     <%= link_to 'Home', dashboard_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
   </div>
-    <%= render "shared/tweet_form" %>
-  <ul>
-    <%= Tweet.find_each do |tweet| %>
-      <li>
-        <%= tweet.user.username %>:
-        <%= tweet.body %>
-      </li>
+    <div class="mb-4">
+      <%= render "shared/tweet_form" %>
+    </div>
+
+    <% if false %> <%# this is commented out %>
+      <% Tweet.order(created_at: :desc).each do |tweet| %>
+        <%= render "tweets/tweet", tweet: tweet %>
+      <% end %>
     <% end %>
-  </ul>
+
+    <%= render Tweet.order(created_at: :desc) %>  <%# this is called render collection %>
 </div>
 <div class="col">
   One of three columns

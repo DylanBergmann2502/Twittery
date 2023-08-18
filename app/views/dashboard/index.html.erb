@@ -1,15 +1,70 @@
-<h1>We are signed in!</h1>
-<%= link_to 'Log out', destroy_user_session_path,
+<div class="container py-2">
+  <div class="row">
+    <aside class="col-sm side-navbar">
+      <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2 px-3" do %>
+        <div class="px-2 py-2 rounded-circle">
+          <%= image_tag "bird.png", width: "32" %>
+        </div>
+      <% end %>
+      <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative" style="bottom: 3px;"><%= image_tag "house.png", width: "32" %></span>
+          Home
+        </div>
+      <% end %>
+      <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative" style="bottom: 3px;"><%= image_tag "hashtag.png", width: "32" %></span>
+          Explore
+        </div>
+      <% end %>
+      <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative" style="bottom: 3px;"><%= image_tag "bell.png", width: "32" %></span>
+          Notifications
+        </div>
+      <% end %>
+      <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative" style="bottom: 3px;"><%= image_tag "message.png", width: "32" %></span>
+          Messages
+        </div>
+      <% end %>
+      <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative" style="bottom: 3px;"><%= image_tag "bookmark.png", width: "32" %></span>
+          Bookmarks
+        </div>
+      <% end %>
+      <%= link_to root_path, class: "d-flex align-items-center fs-5 mb-2" do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative" style="bottom: 3px;"><%= image_tag "profile.png", width: "32" %></span>
+          Profile
+        </div>
+      <% end %>
+      <div class="d-flex align-items-center fs-5 mb-2 px-4">
+        <%= button_tag "Tweet", class: "btn btn-primary btn-lg rounded-pill" %>
+      </div>
+      <%= link_to 'Log out', destroy_user_session_path,
                   data: { "turbo-method": :delete }, class: "btn btn-primary btn-lg" %>
-<%= form_with model: Tweet.new, url: tweets_path, local: true do |f| %>
-  <%= f.text_field :body %>
-  <%= f.submit %>
-<% end %>
-<ul>
-  <%= Tweet.find_each do |tweet| %>
-    <li>
-      <%= tweet.user.username %>:
-      <%= tweet.body %>
-    </li>
-  <% end %>
-</ul>
+    </aside>
+    <div class="col-sm">
+      <%= form_with model: Tweet.new, url: tweets_path, local: true do |f| %>
+        <%= f.text_field :body %>
+        <%= f.submit %>
+      <% end %>
+      <ul>
+        <%= Tweet.find_each do |tweet| %>
+          <li>
+            <%= tweet.user.username %>:
+            <%= tweet.body %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
+

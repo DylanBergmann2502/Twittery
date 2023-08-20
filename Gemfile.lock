@@ -222,6 +222,7 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.2)
     tilt (2.2.0)
+    timecop (0.9.8)
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   shoulda-matchers (~> 5.0)
   sprockets-rails
   stimulus-rails
+  timecop
   turbo-rails
   tzinfo-data
   web-console

@@ -12,8 +12,10 @@
       <% end %>
     <% end %>
 
-    <div id="tweets">
-      <%= render Tweet.order(created_at: :desc) %>  <%# this is called render collection %>
+    <div id="tweets"> <%# this is called render collection %>
+      <%= render partial: "tweets/tweet",
+                 collection: @tweets,
+                 as: :tweet_presenter %>
     </div>
 
 </div>

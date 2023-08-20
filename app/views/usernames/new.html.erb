@@ -1,5 +1,5 @@
 <div class="container py-5" style="max-width: 540px">
-  <h2>Set your username</h2>
+  <h2>Set Your User</h2>
   <%= form_with model: current_user, local: true, url: username_path(current_user) do |f| %>
     <div class="mb-3">
       <%= f.label :username, class: "form-label" %>
@@ -11,6 +11,11 @@
       <%= f.text_field :display_name, class: "form-control" %>
     </div>
 
-    <%= f.submit "Set Username", class: "btn btn-primary btn-twitter rounded-pill" %>
+    <div class="mb-3">
+      <%= f.label :avatar, class: "form-label" %>
+      <%= f.file_field :avatar, class: "form-control" %>
+    </div>
+
+    <%= f.submit "Set My User", class: "btn btn-primary btn-twitter rounded-pill" %>
   <% end %>
 </div>

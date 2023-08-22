@@ -25,9 +25,11 @@
                     <% end %>
                 </div>
                 <div>
-                    <%= link_to '#', class: "text-decoration-none text-black retweets" do %>
-                        <%= image_tag "unretweeted.png", size:"20x20", class: "me-1" %>
-                        <span>Retweets</span>
+                    <%= link_to tweet_presenter.retweet_tweet_url,
+                            data: {"turbo-method": tweet_presenter.retweet_turbo_data_method},
+                            class: "text-decoration-none text-black retweets" do %>
+                        <%= image_tag tweet_presenter.retweet_image, size:"20x20", class: "me-1" %>
+                        <span><%= tweet_presenter.retweets_count %></span>
                     <% end %>
                 </div>
                 <div>
@@ -41,7 +43,7 @@
                 <div>
                     <%= link_to tweet_presenter.bookmark_tweet_url,
                             data: {"turbo-method": tweet_presenter.bookmark_turbo_data_method},
-                            class: "text-decoration-none text-black bookmark" do %>
+                            class: "text-decoration-none text-black bookmarks" do %>
                         <%= image_tag tweet_presenter.bookmark_image, size:"20x20", class: "me-1" %>
                         <span><%= tweet_presenter.bookmark_text %></span>
                     <% end %>

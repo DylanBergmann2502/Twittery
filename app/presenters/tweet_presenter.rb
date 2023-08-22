@@ -28,7 +28,7 @@ class TweetPresenter
     end
   end
 
-  def turbo_data_method
+  def like_turbo_data_method
     if tweet_liked_by_current_user?
       "delete"
     else
@@ -36,11 +36,43 @@ class TweetPresenter
     end
   end
 
-  def like_heart_image
+  def like_image
     if tweet_liked_by_current_user?
       "heart-filled.png"
     else
       "heart-unfilled.png"
+    end
+  end
+
+  def bookmark_tweet_url
+    if tweet_bookmarked_by_current_user?
+      tweet_bookmark_path(tweet, current_user.bookmarks.find_by(tweet: tweet))
+    else
+      tweet_bookmarks_path(tweet)
+    end
+  end
+
+  def bookmark_turbo_data_method
+    if tweet_bookmarked_by_current_user?
+      "delete"
+    else
+      "post"
+    end
+  end
+
+  def bookmark_image
+    if tweet_bookmarked_by_current_user?
+      "bookmark-filled.png"
+    else
+      "bookmark-unfilled.png"
+    end
+  end
+
+  def bookmark_text
+    if tweet_bookmarked_by_current_user?
+      "Bookmarked"
+    else
+      "Bookmark"
     end
   end
 
@@ -50,4 +82,9 @@ class TweetPresenter
     @tweet_liked_by_current_user ||= tweet.liking_users.include?(current_user)
   end
   alias tweet_liked_by_current_user? tweet_liked_by_current_user
+
+  def tweet_bookmarked_by_current_user
+    @tweet_bookmarked_by_current_user ||= tweet.bookmarking_users.include?(current_user)
+  end
+  alias tweet_bookmarked_by_current_user? tweet_bookmarked_by_current_user
 end

@@ -26,22 +26,24 @@
                 </div>
                 <div>
                     <%= link_to '#', class: "text-decoration-none text-black retweets" do %>
-                        <%= image_tag "retweets.png", size:"20x20", class: "me-1" %>
+                        <%= image_tag "unretweeted.png", size:"20x20", class: "me-1" %>
                         <span>Retweets</span>
                     <% end %>
                 </div>
                 <div>
                     <%= link_to tweet_presenter.like_tweet_url,
-                            data: {"turbo-method": tweet_presenter.turbo_data_method},
+                            data: {"turbo-method": tweet_presenter.like_turbo_data_method},
                             class: "text-decoration-none text-black likes" do %>
-                        <%= image_tag tweet_presenter.like_heart_image, size:"20x20", class: "me-1" %>
+                        <%= image_tag tweet_presenter.like_image, size:"20x20", class: "me-1" %>
                         <span><%= tweet_presenter.likes_count %></span>
                     <% end %>
                 </div>
                 <div>
-                    <%= link_to '#', class: "text-decoration-none text-black bookmark" do %>
-                        <%= image_tag "bookmark2.png", size:"20x20", class: "me-1" %>
-                        <span>Bookmark</span>
+                    <%= link_to tweet_presenter.bookmark_tweet_url,
+                            data: {"turbo-method": tweet_presenter.bookmark_turbo_data_method},
+                            class: "text-decoration-none text-black bookmark" do %>
+                        <%= image_tag tweet_presenter.bookmark_image, size:"20x20", class: "me-1" %>
+                        <span><%= tweet_presenter.bookmark_text %></span>
                     <% end %>
                 </div>
             </div>

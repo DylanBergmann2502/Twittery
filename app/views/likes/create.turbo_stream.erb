@@ -2,5 +2,5 @@
     <%# replace the tweet after it's being liked without reloading the entire page %>
 <% end %>
 <%= turbo_stream.replace dom_id(@tweet) do %>
-    <%= render partial: "tweets/tweet", locals: { tweet_presenter: TweetPresenter.new(@tweet) } %>
+    <%= render partial: "tweets/tweet", locals: { tweet_presenter: TweetPresenter.new(tweet: @tweet, current_user: current_user) } %>
 <% end %>

@@ -13,4 +13,7 @@ RSpec.describe Tweet, type: :model do
 
   it { should have_many(:retweets).dependent(:destroy) }
   it { should have_many(:retweeting_users).through(:retweets).source(:user) }
+
+  it { should have_many(:views).dependent(:destroy) }
+  it { should have_many(:viewing_users).through(:views).source(:user) }
 end

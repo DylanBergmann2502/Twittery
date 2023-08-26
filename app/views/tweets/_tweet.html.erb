@@ -23,7 +23,7 @@
                     <%# ??????? WTF tweet_path(tweet_presenter.tweet) does not work %>
                     <%= link_to '#', class: "text-decoration-none text-black replies" do %>
                         <%= image_tag "conversations.png", size:"20x20", class: "me-1" %>
-                        <span>Replies</span>
+                        <span><%= tweet_presenter.replies_count %></span>
                     <% end %>
                 </div>
                 <div>

@@ -1,6 +1,7 @@
 .btn-twitter {
     background-color: $twitter-blue;
     color: $white;
+
     -moz-transition: all .1s ease-in;
     -o-transition: all .1s ease-in;
     -webkit-transition: all .1s ease-in;
@@ -9,6 +10,23 @@
 
     &:hover {
         background-color:  $twitter-blue-dark !important;
+        color: $white !important;
+    }
+}
+
+.btn-twitter-outline {
+    background-color: $white;
+    color: $twitter-blue;
+    border-color: $twitter-blue;
+
+    -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    font-weight: 600;
+
+    &:hover {
+        background-color: $twitter-blue !important;
         color: $white !important;
     }
 }

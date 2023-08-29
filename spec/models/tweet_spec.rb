@@ -19,4 +19,6 @@ RSpec.describe Tweet, type: :model do
 
   it { should have_many(:reply_tweets).with_foreign_key(:parent_tweet_id).class_name("Tweet").inverse_of(:parent_tweet) }
   it { should belong_to(:parent_tweet).class_name("Tweet").optional }
+
+  it { should have_and_belong_to_many :hashtags }
 end

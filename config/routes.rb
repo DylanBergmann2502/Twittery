@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :reply_tweets, only: [:create]
   end
 
+  resources :bookmarks, only: [:index]
+
   get :dashboard, to: "dashboard#index"
   get :profile, to: "profile#show"
   put :profile, to: "profile#update"

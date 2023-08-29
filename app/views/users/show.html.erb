@@ -27,6 +27,13 @@
       <% end %>
     </div>
     <%= render "users/profile_section", user: @user %>
+
+    <div id="tweets"> <%# this is called render collection %>
+      <%= render partial: "tweets/tweet",
+                 collection: @tweet_presenter,
+                 as: :tweet_presenter %>
+    </div>
+
   </div>
 
 </div>

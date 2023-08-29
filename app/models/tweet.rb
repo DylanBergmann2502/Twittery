@@ -1,4 +1,7 @@
 class Tweet < ApplicationRecord
+  HASHTAG_REGEX = /(#\w+)/
+
+  # Associations
   belongs_to :user
 
   has_many :likes, dependent: :destroy
@@ -18,5 +21,18 @@ class Tweet < ApplicationRecord
 
   has_and_belongs_to_many :hashtags
 
+  #Validations
   validates :body, presence: true, length: { maximum: 280 }
+
+  # Callbacks
+  before_save :parse_and_save_hashtags
+
+  def parse_and_save_hashtags
+    matches = body.scan(HASHTAG_REGEX)
+    return if matches.empty?
+
+    matches.flatten.each do |tag|
+      Hashtag.find_or_create_by(tag: tag.delete("#"))
+    end
+  end
 end

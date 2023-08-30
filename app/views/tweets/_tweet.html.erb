@@ -10,7 +10,7 @@
                      @<%= tweet_presenter.username %> · <%= tweet_presenter.created_at %>
                 </span>
             </p>
-            <p><%= tweet_presenter.body %></p>
+            <%= tweet_presenter.body_html.html_safe %>
             <div class="d-flex justify-content-between action-links">
                 <div>
                     <%# ??????? WTF tweet_path(tweet_presenter.tweet) does not work %>

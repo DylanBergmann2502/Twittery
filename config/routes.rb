@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :followings, only: [:create, :destroy]
   end
+
+  resources :hashtags, only: [:index], path: "/explore"
 end

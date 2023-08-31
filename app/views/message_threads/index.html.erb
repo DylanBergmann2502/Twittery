@@ -1,12 +1,11 @@
-<div class="col-6">
+<div class="col">
   <div class="mb-5">
     <%= link_to :back, class: "fs-4 text-decoration-none text-black fw-semibold" do %>
       <%= image_tag 'back-arrow.png', size: 25, class: "me-4" %>
-      <span style="position: relative; top: 2px"><%= @hashtag.tag %></span>
+      <span style="position: relative; top: 2px">Messages</span>
     <% end %>
   </div>
-  <%= render partial: "tweets/tweet", collection: @tweet_presenters, as: :tweet_presenter %>
 </div>
-<div class="col">
+<div class="col-6">
   <%= render partial: "shared/hashtag_sidebar" %>
 </div>

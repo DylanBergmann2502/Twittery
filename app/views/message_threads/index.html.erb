@@ -19,7 +19,7 @@
         <div class="flex-grow-1 ms-3">
           <div>
             <span class="fw-bold mr-3"><%= @new_message_thread_user.display_name %></span>
-            <span><%= @new_message_thread_user.username %></span>
+            <span class="text-muted">@<%= @new_message_thread_user.username %></span>
           </div>
         </div>
       </div>
@@ -28,5 +28,19 @@
 
 </div>
 <div class="col-6">
-  <%= render partial: "shared/hashtag_sidebar" %>
+  <div class="vh-100 position-relative">
+    <div class="position-absolute w-100 bottom-0">
+      <%= form_with model: Message.new, url: messages_path do |f| %>
+        <div class="input-group mb-3">
+          <% if @new_message_thread_user.present? %>
+            <%= hidden_field_tag :user_id, @new_message_thread_user.id %>
+          <% end %>
+          <%= f.text_field :body, placeholder: "Type your message", class: "form-control" %>
+          <%= button_tag class: "btn btn-outline-secondary" do %>
+            <%= image_tag "send.png", size: 17 %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

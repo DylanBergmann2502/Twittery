@@ -23,7 +23,7 @@
                 data: {"bs-toggle": "modal", "bs-target": "#profile-edit-modal"} %></div>
       <% else %>
         <div>
-            <%= link_to message_threads_path(user_id: @user.id), class: "btn btn-twitter-outline rounded-pill" do %>
+            <%= link_to message_threads_path(user_id: @user.id), data: {turbo_frame: "_top"}, class: "btn btn-twitter-outline rounded-pill" do %>
                 <%= image_tag "envelope.png", size: 20 %>
                 Message
             <% end %>

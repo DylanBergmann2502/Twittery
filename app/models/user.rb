@@ -29,6 +29,8 @@ class User < ApplicationRecord
   has_many :messages
   has_and_belongs_to_many :message_threads
 
+  has_many :notifications, dependent: :destroy
+
   # Validations
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 

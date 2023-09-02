@@ -9,7 +9,7 @@ RSpec.describe "Messages", type: :request do
   describe "first message between the two users" do
     it "only creates one message thread" do
       expect do
-        post messages_path, params: {
+        post messages_path, headers: {'Accept': 'text/vnd.turbo-stream.html' }, params: {
           user_id: user_2.id,
           message: {
             body: "new message"
@@ -20,7 +20,7 @@ RSpec.describe "Messages", type: :request do
 
     it "only creates one message" do
       expect do
-        post messages_path, params: {
+        post messages_path, headers: {'Accept': 'text/vnd.turbo-stream.html' }, params: {
           user_id: user_2.id,
           message: {
             body: "new message"
@@ -41,7 +41,7 @@ RSpec.describe "Messages", type: :request do
 
     it "creates one message on top of existing message(s)" do
       expect do
-        post messages_path, params: {
+        post messages_path, headers: {'Accept': 'text/vnd.turbo-stream.html' }, params: {
           user_id: user_2.id,
           message: {
             body: "new message"

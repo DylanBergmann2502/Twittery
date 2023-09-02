@@ -15,7 +15,11 @@ export default class extends Controller {
           messageThread.classList.remove('active');
         });
 
-        fetch(`/messages/${messageThread.dataset.messageThreadId}/messages`, { headers: this.headers })
+        messageThread.classList.add('active');
+
+        fetch(`/messages/${messageThread.dataset.messageThreadId}/messages?other_user_id=${messageThread.dataset.messagesTargetUserId}`,
+          { headers: this.headers }
+        )
           .then((response) => response.text())
           .then(html => Turbo.renderStreamMessage(html));
       });

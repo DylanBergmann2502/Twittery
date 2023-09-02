@@ -5,8 +5,9 @@ class MessageThreadsController < ApplicationController
     message_thread_ids = MessageThreadsUser.where(user: current_user).pluck(:message_thread_id)
     @message_threads = MessageThread.includes(:users, :messages).where(id: message_thread_ids)
 
-    if params[:user_id].present?
+    if params[:user_id].present? && !@message_threads.map(&:users).flatten.map(&:ids).flatten.include?(params[:user_id].to_i)
       @user = User.find(params[:user_id])
+      @message_threads.unshift(MessageThread.new)
     end
   end
 end

@@ -30,7 +30,8 @@
     <% other_user = message_thread.users.where.not(id: current_user.id).first %>
       <div class="d-flex py-3 px-3 message-thread"
            data-messages-target="messageThread"
-           data-message-thread-id="<%= message_thread.id %>">
+           data-message-thread-id="<%= message_thread.id %>"
+           data-messages-target-user-id="<%= other_user.id %>" >
         <div class="flex-shrink-0">
           <% if other_user.avatar.present? %>
             <%= image_tag other_user.avatar, size: "48x48", class: "rounded-circle" %>

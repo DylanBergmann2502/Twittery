@@ -6,7 +6,7 @@ class MessageThreadsController < ApplicationController
     @message_threads = MessageThread.includes(:users, :messages).where(id: message_thread_ids)
 
     if params[:user_id].present?
-      @new_message_thread_user = User.find(params[:user_id])
+      @user = User.find(params[:user_id])
     end
   end
 end

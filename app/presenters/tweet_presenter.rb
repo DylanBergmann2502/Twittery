@@ -24,6 +24,8 @@ class TweetPresenter
     texts = tweet.body.split(" ").map do |word|
       if word.include?("#")
         "<a class=\"twitter-link\">#{word}</a>"
+      elsif word.include?("@")
+        "<a class=\"twitter-link\">#{word}</a>"
       else
         word
       end

@@ -22,6 +22,9 @@ RSpec.describe Tweet, type: :model do
 
   it { should have_and_belong_to_many :hashtags }
 
+  it { should have_many(:mentions).dependent(:destroy) }
+  it { should have_many(:mentioned_users).through(:mentions) }
+
   describe "saving hashtags" do
     let(:user) { create(:user) }
 
@@ -53,6 +56,26 @@ RSpec.describe Tweet, type: :model do
           # #Bell fails for some reason
           Tweet.create(user: user, body: "#bell tolls for #whom")
         end.to change { Hashtag.count }.by(1)
+      end
+    end
+  end
+
+  describe "saving mentions" do
+    let(:user) { create(:user) }
+    context "when there are no mentions in the body" do
+      it "does not create any new mentions" do
+        expect do
+          Tweet.create(user: user, body: "Bell tolls for whom")
+        end.not_to change { Mention.count }
+      end
+    end
+
+    context "when there are mentions in the body" do
+      it "creates any new mentions" do
+        user = User.create(email: "foo@bar.com", username: "foobar", password: "password")
+        expect do
+          Tweet.create(user: user, body: "Bell tolls for @foobar")
+        end.to change { Mention.count }.by(1)
       end
     end
   end

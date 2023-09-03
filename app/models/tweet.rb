@@ -1,5 +1,6 @@
 class Tweet < ApplicationRecord
   HASHTAG_REGEX = /(#\w+)/
+  MENTION_REGEX = /(@\w+)/
 
   # Associations
   belongs_to :user
@@ -19,6 +20,9 @@ class Tweet < ApplicationRecord
   has_many :reply_tweets, class_name: "Tweet", foreign_key: :parent_tweet_id, inverse_of: :parent_tweet
   belongs_to :parent_tweet, class_name: "Tweet", optional: true, counter_cache: :replies_count
 
+  has_many :mentions, dependent: :destroy
+  has_many :mentioned_users, through: :mentions
+
   has_and_belongs_to_many :hashtags
 
   #Validations
@@ -34,6 +38,20 @@ class Tweet < ApplicationRecord
     matches.flatten.each do |tag|
       hashtag = Hashtag.find_or_create_by(tag: tag.delete("#"))
       hashtags << Hashtag.find_or_create_by(tag: tag.delete("#"))
+    end
+  end
+
+  after_save :parse_and_save_mentions
+
+  def parse_and_save_mentions
+    matches = body.scan(MENTION_REGEX)
+    return if matches.empty?
+
+    matches.flatten.each do |mention|
+      mentioned_user = User.find_by(username: mention.delete("@"))
+      next if mentioned_user.blank?
+
+      mentions.find_or_create_by(mentioned_user: mentioned_user)
     end
   end
 end

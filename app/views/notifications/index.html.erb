@@ -3,10 +3,25 @@
     <%= link_to 'Notifications', notifications_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
     </div>
     <div id="tweets">
-      <p>Hello from notifications</p>
       <% @notifications.each do |notification| %>
-        <p><%= notification.id %></p>
+        <% if notification.followed_me? %>
+        <div>
+          <% if notification.actor.avatar.present? %>
+            <%= image_tag notification.actor.avatar, size: 48, class: "rounded-circle" %>
+          <% else %>
+            <%= image_tag 'user.png', size: 48, class: "rounded-circle" %>
+          <% end %>
+          <p><span class="fw-bold"><%= notification.actor.display_name %></span> followed you</p>
+        </div>
+
+        <% elsif notification.liked_tweet? %>
+
+        <% elsif notification.mentioned_me? %>
+
+        <% end %>
       <% end %>
+
+
     </div>
 </div>
 <div class="col">

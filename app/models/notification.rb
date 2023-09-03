@@ -6,6 +6,9 @@ class Notification < ApplicationRecord
 
   # Enums
   VERBS = %w[followed-me liked-tweet mentioned-me].freeze
+  VERBS.each do |v|
+    define_method("#{v.gsub("-", "_")}?") { v == verb }
+  end
 
   # Validations
   validates :verb, presence: true, inclusion: { in: VERBS }

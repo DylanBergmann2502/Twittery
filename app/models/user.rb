@@ -31,6 +31,8 @@ class User < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  has_many :tweet_activities, dependent: :destroy
+
   # Validations
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 

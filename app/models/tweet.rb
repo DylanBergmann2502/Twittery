@@ -20,10 +20,10 @@ class Tweet < ApplicationRecord
   has_many :reply_tweets, class_name: "Tweet", foreign_key: :parent_tweet_id, inverse_of: :parent_tweet
   belongs_to :parent_tweet, class_name: "Tweet", optional: true, counter_cache: :replies_count
 
+  has_and_belongs_to_many :hashtags
+
   has_many :mentions, dependent: :destroy
   has_many :mentioned_users, through: :mentions
-
-  has_and_belongs_to_many :hashtags
 
   #Validations
   validates :body, presence: true, length: { maximum: 280 }

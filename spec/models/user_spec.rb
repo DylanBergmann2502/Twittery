@@ -26,6 +26,8 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:notifications).dependent(:destroy) }
 
+  it { should have_many(:tweet_activities).dependent(:destroy) }
+
   describe "#set_display_name" do
     context "when display name is set" do
       it "does not change the display name" do

@@ -27,7 +27,7 @@
                 <%= image_tag "envelope.png", size: 20 %>
                 Message
             <% end %>
-            <%= render "follow_button", user: @user, current_user: current_user %>
+            <%= render "users/follow_button", user: @user, current_user: current_user %>
         </div>
       <% end %>
     </div>

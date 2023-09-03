@@ -77,6 +77,13 @@ RSpec.describe Tweet, type: :model do
           Tweet.create(user: user, body: "Bell tolls for @foobar")
         end.to change { Mention.count }.by(1)
       end
+
+      it "creates any new mention notification" do
+        user = User.create(email: "foo@bar.com", username: "foobar", password: "password")
+        expect do
+          Tweet.create(user: user, body: "Bell tolls for @foobar")
+        end.to change { Notification.count }.by(1)
+      end
     end
   end
 end

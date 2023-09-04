@@ -4,7 +4,7 @@ class TweetPresenter
 
   def initialize(tweet:, current_user:, tweet_activity: nil)
     @tweet = tweet
-    @current_user = user
+    @current_user = current_user
     @tweet_activity = tweet_activity
   end
 
@@ -14,7 +14,7 @@ class TweetPresenter
   delegate :display_name, :username, :avatar, to: :user
 
   def tweet_activity_html
-    case tweet_activity.verb
+    case tweet_activity&.verb
     when "liked"
       "<p class=\"fw-bold fs-6 mb-0 text-muted\" style=\"margin-left: 5rem; font-size: 12px !important;\">#{tweet_activity.actor.display_name} liked</p>"
     when "replied"

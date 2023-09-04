@@ -13,15 +13,14 @@ class TweetPresenter
   delegate :user, :likes_count, :retweets_count, :replies_count, :views_count, to: :tweet
   delegate :display_name, :username, :avatar, to: :user
 
-  def render_tweet_activity?
-    return false unless tweet_activity
-    tweet_activity.verb.in?(TweetActivity::VERBS - %w[tweeted])
-  end
-
   def tweet_activity_html
     case tweet_activity.verb
     when "liked"
       "<p class=\"fw-bold fs-6 mb-0 text-muted\" style=\"margin-left: 5rem; font-size: 12px !important;\">#{tweet_activity.actor.display_name} liked</p>"
+    when "replied"
+      "<p class=\"fw-bold fs-6 mb-0 text-muted\" style=\"margin-left: 5rem; font-size: 12px !important;\">#{tweet_activity.actor.display_name} replied to</p>"
+    else
+      ""
     end
   end
 

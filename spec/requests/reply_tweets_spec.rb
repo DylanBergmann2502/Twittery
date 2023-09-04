@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Reply Tweets", type: :request do
-  describe "POST create" do
-    it "creates a new tweet reply" do
-      user = create(:user)
-      sign_in user
-      parent_tweet = create(:tweet)
+  let(:user) { create(:user) }
+  let(:parent_tweet) { create(:tweet) }
 
+  before { sign_in user }
+
+  describe "POST create" do
+    before { parent_tweet }
+    it "creates a new tweet reply" do
       expect do
         post tweet_reply_tweets_path(parent_tweet), params: {
           tweet: {
@@ -17,5 +19,14 @@ RSpec.describe "Reply Tweets", type: :request do
       expect(response).to redirect_to(dashboard_path)
     end
 
+    it "creates a new TweetActivity" do
+      expect do
+        post tweet_reply_tweets_path(parent_tweet), params: {
+          tweet: {
+            body: "New tweet body"
+          }
+        }
+      end.to change { TweetActivity.count }.by(1)
+    end
   end
 end

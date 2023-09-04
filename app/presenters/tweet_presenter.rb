@@ -19,6 +19,8 @@ class TweetPresenter
       "<p class=\"fw-bold fs-6 mb-0 text-muted\" style=\"margin-left: 5rem; font-size: 12px !important;\">#{tweet_activity.actor.display_name} liked</p>"
     when "replied"
       "<p class=\"fw-bold fs-6 mb-0 text-muted\" style=\"margin-left: 5rem; font-size: 12px !important;\">#{tweet_activity.actor.display_name} replied to</p>"
+    when "retweeted"
+      "<p class=\"fw-bold fs-6 mb-0 text-muted\" style=\"margin-left: 5rem; font-size: 12px !important;\">#{tweet_activity.actor.display_name} retweeted</p>"
     else
       ""
     end

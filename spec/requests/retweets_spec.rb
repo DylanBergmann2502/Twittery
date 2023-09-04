@@ -32,7 +32,7 @@ RSpec.describe "Retweets", type: :request do
 
     it "deletes a tweet activity" do
       retweet = create(:retweet, user: user, tweet: tweet)
-      TweetActivity.create(tweet: tweet, user: user, actor: user, verb: "retweeted")
+      TweetActivity.create(tweet: tweet, user: tweet.user, actor: user, verb: "retweeted")
       expect do
         delete tweet_retweet_path(tweet, retweet)
       end.to change { TweetActivity.count }.by(-1)

@@ -14,7 +14,7 @@
 
     <div id="tweets"> <%# this is called render collection %>
       <%= render partial: "tweets/tweet",
-                 collection: @tweet_activities,
+                 collection: @tweet_activities_data[:tweet_activities],
                  as: :tweet_presenter %>
     </div>
 

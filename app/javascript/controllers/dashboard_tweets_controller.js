@@ -8,7 +8,6 @@ export default class extends Controller {
   connect() {
     window.addEventListener('scroll', () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-
         if (this.element.dataset.lastPage === 'false') {
           fetch(`/dashboard?page=${this.element.dataset.nextPage}`, { headers: this.headers })
             .then(response => response.text())

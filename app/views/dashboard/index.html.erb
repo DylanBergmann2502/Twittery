@@ -12,7 +12,13 @@
       <% end %>
     <% end %>
 
-    <div id="tweets"> <%# this is called render collection %>
+    <%# this is called render collection %>
+    <div
+      id="tweets"
+      data-controller="dashboard-tweets"
+      data-next-page="<%= @tweet_activities_data[:next_page] %>"
+      data-last-page="<%= @tweet_activities_data[:last_page] %>"
+    >
       <%= render partial: "tweets/tweet",
                  collection: @tweet_activities_data[:tweet_activities],
                  as: :tweet_presenter %>
